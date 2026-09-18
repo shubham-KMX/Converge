@@ -31,6 +31,30 @@ features.
 - **Frontend**: React + Vite + TypeScript
 - **Infra**: PostgreSQL, Keycloak, Adminer via Docker Compose
 
+## Building the backend
+
+The backend is pinned to **Java 21** (Lombok 1.18.36 does not work with newer JDKs like 24).
+Point `JAVA_HOME` at a JDK 21 install and use the Maven wrapper:
+
+```powershell
+$env:JAVA_HOME="C:\Program Files\Microsoft\jdk-21.0.12.101-hotspot"
+cd backend
+.\mvnw.cmd -DskipTests package
+```
+
+To run the supporting services and the app:
+
+```powershell
+cd backend
+docker compose up -d      # Postgres, Adminer, Keycloak
+.\mvnw.cmd spring-boot:run
+```
+
+Keycloak needs a `conference-platform` realm with roles `ROLE_ORGANIZER`, `ROLE_ATTENDEE`,
+and `ROLE_STAFF`, matching the issuer URI in `application.properties`.
+
 ## Status
 
-Work in progress. Being built backend-first, endpoint by endpoint.
+Work in progress. Backend is built and compiling: entities, repositories, services (with QR badge
+generation and double-scan check-in), DTOs, MapStruct mappers, controllers, and Keycloak security.
+Sessions and speakers are included. Frontend not started yet.
