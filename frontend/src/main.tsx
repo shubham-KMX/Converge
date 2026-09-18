@@ -11,6 +11,7 @@ import LandingPage from "@/pages/landing-page";
 import ConferenceDetailPage from "@/pages/conference-detail-page";
 import LoginPage from "@/pages/login-page";
 import CallbackPage from "@/pages/callback-page";
+import DashboardPage from "@/pages/dashboard-page";
 import MyBadgesPage from "@/pages/my-badges-page";
 import ViewBadgePage from "@/pages/view-badge-page";
 import MyConferencesPage from "@/pages/my-conferences-page";
@@ -22,6 +23,14 @@ const router = createBrowserRouter([
   { path: "/login", Component: LoginPage },
   { path: "/callback", Component: CallbackPage },
   { path: "/conferences/:id", Component: ConferenceDetailPage },
+  {
+    path: "/dashboard",
+    element: (
+      <ProtectedRoute>
+        <DashboardPage />
+      </ProtectedRoute>
+    ),
+  },
   {
     path: "/dashboard/badges",
     element: (
