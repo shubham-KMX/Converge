@@ -40,7 +40,7 @@ public class QrCode {
   @Enumerated(EnumType.STRING)
   private QrCodeStatusEnum status;
 
-  @Column(name = "value", nullable = false, columnDefinition = "TEXT")
+  @Column(name = "qr_value", nullable = false, columnDefinition = "TEXT")
   private String value;
 
   @ManyToOne(fetch = FetchType.LAZY)
