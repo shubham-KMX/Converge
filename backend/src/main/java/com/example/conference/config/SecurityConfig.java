@@ -22,6 +22,7 @@ public class SecurityConfig {
             authorize
                 .requestMatchers(HttpMethod.GET, "/api/v1/published-conferences/**").permitAll()
                 .requestMatchers("/api/v1/conferences").hasRole("ORGANIZER")
+                .requestMatchers(HttpMethod.POST, "/api/v1/speakers").hasRole("ORGANIZER")
                 .requestMatchers("/api/v1/check-ins").hasRole("STAFF")
                 // Catch all rule
                 .anyRequest().authenticated())
